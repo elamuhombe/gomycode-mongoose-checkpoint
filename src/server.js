@@ -83,7 +83,21 @@ Person.distinct("name", { name: /Michaels/ })
 })
 .catch((err) => {
   console.error(err);
-}); 
+});
+const food = "Fries"; // Example food to search for
+
+// Find a person with the specified food in their favorites
+Person.findOne({ favoriteFoods: food })
+  .then((person) => {
+    if (person) {
+      console.log(`Person with ${food} in favorites:`, person);
+    } else {
+      console.log(`No person found with ${food} in favorites.`);
+    }
+  })
+  .catch((err) => {
+    console.error(err);
+  }); 
 // Start the Express server
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`);
