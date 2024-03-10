@@ -76,7 +76,14 @@ Person.create(arrayOfPeople)
     console.error(err);
 });
   
-  
+ // Find distinct names containing "Michaels"
+Person.distinct("name", { name: /Michaels/ })
+.then((people) => {
+  console.log('Unique names containing "Michaels":', people);
+})
+.catch((err) => {
+  console.error(err);
+}); 
 // Start the Express server
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`);
