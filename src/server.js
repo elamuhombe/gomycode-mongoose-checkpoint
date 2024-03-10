@@ -1,6 +1,7 @@
 // Import required modules
 const express = require("express"); // Express framework
 const mongoose = require("mongoose")// Mongoose
+const Person = require('./models/Person'); // Person model schema
 require("dotenv").config(); // Load environment variables
 
 // Create Express app
@@ -18,6 +19,22 @@ async function connectToDatabase() {
     }
   }
   connectToDatabase();
+
+// Create and Save a Record of a Model
+const person1 = new Person({
+    name: "John Doe",
+    age: 33,
+    favoriteFoods: ["Pizza", "Pasta"],
+  });
+
+person1
+  .save()
+  .then((data) => {
+    console.log("New person saved:", data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
   
 // Start the Express server
 app.listen(PORT, () => {
