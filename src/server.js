@@ -97,6 +97,19 @@ Person.findOne({ favoriteFoods: food })
   })
   .catch((err) => {
     console.error(err);
+  });
+  const personId = "74861a02325ee8ebab2"; // Example personId to search for
+// Find a person by id
+Person.findById(personId)
+  .then((person) => {
+    if (person) {
+      console.log(`Person with id ${personId}:`, person);
+    } else {
+      console.log(`No person found with id ${personId}.`);
+    }
+  })
+  .catch((err) => {
+    console.error(err);
   }); 
 // Start the Express server
 app.listen(PORT, () => {
