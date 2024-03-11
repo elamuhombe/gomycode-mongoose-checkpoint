@@ -38,8 +38,7 @@ To create and save a record of a model, follow these steps:
    });
 
    Output
-   ![recordOne](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/1ec8162b-6c9c-4db2-ad32-73c614e56845)
-
+  ![recordOne](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/2c99cede-3490-4666-af9d-4b6166a678b4)
 
  ```
 
