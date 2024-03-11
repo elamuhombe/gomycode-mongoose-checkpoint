@@ -153,6 +153,15 @@ async function main() {
     console.error("Error:", error);
   }
 }
+
+// Example: Delete all documents where the age is greater than 30
+Person.deleteMany({ age: { $gt: 30 } })
+  .then((result) => {
+    console.log(`${result.deletedCount} documents deleted.`);
+  })
+  .catch((err) => {
+    console.error("Error deleting documents:", err);
+  });
 main()
 // Start the Express server
 app.listen(PORT, () => {
