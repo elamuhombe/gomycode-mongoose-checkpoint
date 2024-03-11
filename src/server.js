@@ -11,34 +11,34 @@ const MONGO_URI = process.env.MONGO_URI; // MongoDB connection URI
 
 // Array of people data
 const arrayOfPeople = [
-    { name: "Karen Michaels", age: 20, favoriteFoods: ["Fries", "Chicken"] },
+    { name: "Karen Michaels", age: 20, favoriteFoods: ["fries", "chicken", "burritos"] },
     {
       name: "Ibrahim Gates",
       age: 26,
-      favoriteFoods: ["Potatoes", "Fish", "Broccoli"],
+      favoriteFoods: ["potatoes", "fish", "broccoli"],
     },
-    { name: "David Nelson", age: 34, favoriteFoods: ["Shrimp", "Rice"] },
-    { name: "Brian Michaels", age: 20, favoriteFoods: ["Burger", "eggs"] },
+    { name: "David Nelson", age: 34, favoriteFoods: ["shrimp", "rice", "chicken"] },
+    { name: "Brian Michaels", age: 20, favoriteFoods: ["hamburger", "eggs"] },
     {
       name: "Wilson Daniels",
       age: 28,
-      favoriteFoods: ["Rice", "Chicken", "Peas"],
+      favoriteFoods: ["rice", "chicken", "peas", "burritos"],
     },
-    { name: "Larry Anthony", age: 36, favoriteFoods: ["Potatoes", "Beef"] },
-    { name: "Wendy Sandra", age: 39, favoriteFoods: ["Crab", "Fries"] },
-    { name: "Sam Michaels", age: 23, favoriteFoods: ["Bananas", "Beef"] },
-    { name: "Karen Michaels", age: 32, favoriteFoods: ["Oyster", "Bananas"] },
-    { name: "Isaac Shah", age: 35, favoriteFoods: ["Chicken", "Pasta", "Kales"] },
-    { name: "Esther Hillary", age: 26, favoriteFoods: ["Sphagetti", "Beef"] },
+    { name: "Larry Anthony", age: 36, favoriteFoods: ["potatoes", "beef", "burritos"] },
+    { name: "Wendy Sandra", age: 39, favoriteFoods: ["Crab", "fries"] },
+    { name: "Sam Michaels", age: 23, favoriteFoods: ["bananas", "beef"] },
+    { name: "Karen Michaels", age: 32, favoriteFoods: ["oyster", "bananas", "chicken"] },
+    { name: "Isaac Shah", age: 35, favoriteFoods: ["chicken", "pasta", "kales"] },
+    { name: "Esther Hillary", age: 26, favoriteFoods: ["sphagetti", "beef"] },
     {
       name: "Cole Keith",
       age: 37,
-      favoriteFoods: ["Rice", "Chicken", "Spinach"],
+      favoriteFoods: ["rice", "chicken", "spinach", "burritos"],
     },
-    { name: "Cindy Joel", age: 23, favoriteFoods: ["Apple Pie", "Yoghurt"] },
-    { name: "Bruce Jackson", age: 33, favoriteFoods: ["Bacon", "Fish", "Rice"] },
-    { name: "David Nelson", age: 34, favoriteFoods: ["Tomato Pie", "Chicken"] },
-    { name: "Rita Rose", age: 29, favoriteFoods: ["Burger", "Fries"] },
+    { name: "Cindy Joel", age: 23, favoriteFoods: ["apple pie", "yoghurt"] },
+    { name: "Bruce Jackson", age: 33, favoriteFoods: ["bacon", "fish", "rice"] },
+    { name: "David Nelson", age: 34, favoriteFoods: ["tomato pie", "chicken"] },
+    { name: "Rita Rose", age: 29, favoriteFoods: ["hamburger", "fries"] },
   ];
 
 // Connect to MongoDB database
@@ -56,7 +56,7 @@ async function connectToDatabase() {
 const person1 = new Person({
     name: "John Doe",
     age: 33,
-    favoriteFoods: ["Pizza", "Pasta"],
+    favoriteFoods: ["pizza", "pasta"],
   });
 
 person1
@@ -162,6 +162,24 @@ Person.deleteMany({ age: { $gt: 30 } })
   .catch((err) => {
     console.error("Error deleting documents:", err);
   });
+
+  async function fetchData() {
+    try {
+      const data = await Person.find({ favoriteFoods: 'burritos' })
+                                .sort({ name: 1 })
+                                .limit(2)
+                                .select('-age')
+                                .exec();
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  
+  fetchData();
+  
+  
+
 main()
 // Start the Express server
 app.listen(PORT, () => {
