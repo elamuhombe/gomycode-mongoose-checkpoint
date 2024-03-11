@@ -11,8 +11,10 @@ To install and set up Mongoose, follow these steps:
 3. Connect to the database using the following syntax:
 
    ```javascript
-   mongoose.connect(<Your URI>, { useNewUrlParser: true, useUnifiedTopology: true });
+   mongoose.connect(MONGO_URI);
    ```
+Output in console
+![dbConnect](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/955d7287-88d0-4236-978b-de1c5ede0753)
 
 ## Person Prototype
 
@@ -22,7 +24,6 @@ The person prototype includes the following fields:
 - `age`: number
 - `favoriteFoods`: array of strings
 
-Ensure you use mongoose basic schema types and consider adding more fields with simple validators like required or unique, and setting default values if needed.
 
 ## Create and Save a Record of a Model
 
@@ -35,15 +36,27 @@ To create and save a record of a model, follow these steps:
    person.save(function(err, data) {
      // ...do your stuff here...
    });
-   ```
+
+   Output
+   ![recordOne](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/eb74c05f-5390-4082-9472-c20db23599b8)
+ ```
 
 ## Create Many Records with `model.create()`
 
 To create many records using `model.create()`, provide an array of objects as the first argument and save them all in the database.
 
+Output
+![severalPeople](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/b1fcc820-47b9-4af2-9605-0b5bb826ff09)
+
+
 ## Use `model.find()` to Search Your Database
 
 Find all the people with a given name using `Model.find()`.
+Example: Find all the people with name 'Michaels'
+
+Output
+![givenName](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/710e4c1d-d1a1-453d-a96c-a2f828200e32)
+
 
 ## Use `model.findOne()` to Return a Single Matching Document
 
