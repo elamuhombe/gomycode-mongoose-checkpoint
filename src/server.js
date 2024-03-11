@@ -163,24 +163,28 @@ Person.deleteMany({ age: { $gt: 30 } })
     console.error("Error deleting documents:", err);
   });
 
-  async function fetchData() {
-    try {
-      const data = await Person.find({ favoriteFoods: 'burritos' })
-                                .sort({ name: 1 })
-                                .limit(2)
-                                .select('-age')
-                                .exec();
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-    }
+ // Async function to fetch data
+async function fetchData() {
+  try {
+    // Find documents where favoriteFoods contain 'burritos', sort by name, limit to 2, exclude age field
+    const data = await Person.find({ favoriteFoods: 'burritos' })
+                              .sort({ name: 1 })
+                              .limit(2)
+                              .select('-age')
+                              .exec();
+    console.log(data); // Log the fetched data
+  } catch (err) {
+    console.error(err); // Log any errors that occur
   }
-  
-  fetchData();
+}
+
+fetchData(); // Invoke the fetchData function
+// Invoke main function
+main()
   
   
 
-main()
+
 // Start the Express server
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`);
