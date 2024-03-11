@@ -98,21 +98,46 @@ Person.findOne({ favoriteFoods: food })
   .catch((err) => {
     console.error(err);
   });
-  const personId = "74861a02325ee8ebab2"; // Example personId to search for
-// Find a person by id
-Person.findById(personId)
-  .then((person) => {
-    if (person) {
-      console.log(`Person with id ${personId}:`, person);
+  const personId = '65ef33e85c2acbeaecbcf332'; // Example personId to search for
+
+  // Validate the _id value
+  if (!mongoose.Types.ObjectId.isValid(personId)) {
+    console.log(`Invalid personId: ${personId}`);
+    return;
+  }
+  
+  // Find a person by id
+  Person.findById(personId)
+    .then((person) => {
+      if (person) {
+        console.log(`Person with id ${personId}:`, person);
+      } else {
+        console.log(`No person found with id ${personId}.`);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  const personName = "Karen Michaels"; // Example personName to search for
+
+// Find a person by name and update their age
+Person.findOneAndUpdate(
+  { name: personName }, // Search criteria
+  { age: 20 }, // Update age to 20
+  { new: true } // Return the updated document
+)
+  .then((updatedPerson) => {
+    if (updatedPerson) {
+      console.log(`Updated person with name ${personName}:`, updatedPerson);
     } else {
-      console.log(`No person found with id ${personId}.`);
+      console.log(`No person found with name ${personName}.`);
     }
   })
   .catch((err) => {
-    console.error(err);
-  }); 
+    console.error("Error updating person:", err);
+  });
 // Start the Express server
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`);
   });
-  
