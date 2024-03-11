@@ -38,7 +38,8 @@ To create and save a record of a model, follow these steps:
    });
 
    Output
-   ![recordOne](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/eb74c05f-5390-4082-9472-c20db23599b8)
+   ![dbConnect](https://github.com/elamuhombe/gomycode-mongoose-checkpoint/assets/10416177/1c69ccc5-74dc-4b6d-bccd-85db1f2fe56e)
+
  ```
 
 ## Create Many Records with `model.create()`
