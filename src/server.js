@@ -137,6 +137,23 @@ Person.findOneAndUpdate(
   .catch((err) => {
     console.error("Error updating person:", err);
   });
+
+  // Async function for removing a person
+async function main() {
+  try {
+    // Your existing code goes here
+    const removedPerson = await Person.findOneAndDelete({
+      _id: "65ef3614752fc494c6c42ec6",
+    });
+    console.log(
+      `Removed person with id 65ef3614752fc494c6c42ec6:`,
+      removedPerson
+    );
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+main()
 // Start the Express server
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`);
